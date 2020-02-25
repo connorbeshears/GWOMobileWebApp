@@ -36,6 +36,20 @@
   color: white;
 }
 
+.selectButton{
+  background-color: #003399;
+  font-size: 1.5em;
+  color: white;
+  margin: 1em;
+  width: 90%;
+
+}
+
+.logout{
+  color: grey;
+  margin: 1em;
+}
+
 html{
   scroll-behavior: smooth;
 }
