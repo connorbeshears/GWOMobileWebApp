@@ -28,17 +28,27 @@
 
     <h2>Confirmation</h2>
 
+</br>
     <!-- add what is being donated. ex if clothes then list clothes if mulitple then list all being donated -->
     <p class="confirm_title"></p>
 
-    <p class="boxes">Boxes:</p>
-    <p class="bags">Bags</p>
-    <p class="each">Each</p>
+    <p class="boxes">Boxes: </p>
+    <p class="bags">Bags: </p>
+    <p class="each">Each: </p>
 
     <p class="description">Description</p>
 
-    <button class="submit_and_print">Submit and Print</button>
-    <button class="cancel">Cancel</button>
+    <form action="success.html" method="get" id="form_success">
+    </form>
+    <button type="submit" form="form_success" class="btn btn-primary" value="Submit">Submit and Print</button>
+
+
+    <form action="confirmPageCancel.html" method="get" id="form_cancel">
+    </form>
+    <button type="submit" form="form_cancel" class="btn btn-primary"  value="Submit">Cancel</button>
+
+    <!-- <button class="submit_and_print">Submit and Print</button> -->
+    <!-- <button class="cancel">Cancel</button> -->
     
 
 
