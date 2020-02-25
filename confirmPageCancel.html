@@ -21,6 +21,7 @@
             <ul class="nav navbar-nav pText">
                 <!-- add back button here if we still want one -->
                 <li class="active"><a href="index.html">Home</a></li>
+                <h1>Cancel Donation</h1>
             </ul>
         </div>
     </nav>
@@ -33,11 +34,15 @@
     <p>Are you sure you want to cancel the donation? Selecting no will lead to main page.</p>
 
 
-    <button class="cancel_yes">Yes, Cancel</button>
-    <button class="cancel_no">No, Return</button>
+    <form action="confirmPage.html" method="get" id="form1">
+    </form>
+    <button type="submit" form="form1" value="Submit">No, Return</button>
 
 
-
+    <form action="x.html" method="get" id="form_cancel_donation">
+    </form>
+    <button type="submit" form="form_cancel_donation" value="Submit">Yes, Cancel</button>
+    
     <!-- Footer of page -->
     <footer class="container-fluid text-center disclaimer">
         <p>&copy Goodwill of Omaha</p>
