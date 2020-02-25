@@ -7,6 +7,35 @@
   display: inline !important;
 }
 
+.loginDiv{
+  text-align: center;
+}
+
+.logo{
+  margin: 1em;
+}
+
+.background{
+  background-color: #d3d3d3;
+}
+
+.inputField{
+  margin-left: 15%;
+  margin-right: 15%;
+  
+}
+
+.button{
+  background-color: #003399;
+  color: white;
+  margin: 1em;
+}
+
+.button:hover{
+  background-color: #0044cc;
+  color: white;
+}
+
 html{
   scroll-behavior: smooth;
 }
@@ -27,7 +56,7 @@ html{
   
   /* Add a gray background color and some padding to the footer */
 footer {
-  background-color: #f2f2f2;
+  background-color: #d3d3d3;
   padding: 25px;
 }
   
