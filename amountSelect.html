@@ -10,8 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -34,39 +34,45 @@
             <div class="row justify-content-center p-2">
                 <div class="col-2"></div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-primary btn-lg">-</button>
+                    <button type="button" onclick="subtract('box')" class="btn btn-primary btn-lg button"
+                        id="boxSub">-</button>
                 </div>
                 <div class="col-3 text-center">
-                    <p>Boxes: 0</p>
+                    <p id="box">Boxes:</p>
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-primary btn-lg">+</button>
+                    <button type="button" onclick="add('box')" class="btn btn-primary btn-lg button"
+                        id="boxAdd">+</button>
                 </div>
                 <div class="col-2"></div>
             </div>
             <div class="row justify-content-center p-2">
                 <div class="col-2"></div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-primary btn-lg">-</button>
+                    <button type="button" onclick="subtract('bag')" class="btn btn-primary btn-lg button"
+                        id="bagSub">-</button>
                 </div>
                 <div class="col-3 text-center">
-                    <p>Bags: 0</p>
+                    <p id="bag">Bags:</p>
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-primary btn-lg">+</button>
+                    <button type="button" onclick="add('bag')" class="btn btn-primary btn-lg button"
+                        id="bagAdd">+</button>
                 </div>
                 <div class="col-2"></div>
             </div>
             <div class="row justify-content-center p-2">
                 <div class="col-2"></div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-primary btn-lg">-</button>
+                    <button type="button" onclick="subtract('each')" class="btn btn-primary btn-lg button"
+                        id="eachSub">-</button>
                 </div>
                 <div class="col-3 text-center">
-                    <p>Each: 0</p>
+                    <p id="each">Each:</p>
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-primary btn-lg">+</button>
+                    <button type="button" onclick="add('each')" class="btn btn-primary btn-lg button"
+                        id="eachAdd">+</button>
                 </div>
                 <div class="col-2"></div>
             </div>
@@ -74,10 +80,10 @@
                 <input class="form-control form-control-lg" type="text" placeholder="Description">
             </div>
             <div class="row justify-content-center p-2">
-                <a href="itemSelect.html" class="btn btn-primary btn-lg">Add More</a>
+                <a href="itemSelect.html" class="btn btn-primary btn-lg button">Add More</a>
             </div>
             <div class="row justify-content-center p-2">
-                <a href="confirmPage.html" class="btn btn-primary btn-lg">Submit</a>
+                <a href="confirmPage.html" class="btn btn-primary btn-lg button">Submit</a>
             </div>
         </div>
     </main>
@@ -86,14 +92,63 @@
         <p>&copy Goodwill of Omaha</p>
         <p>Created by Northwest Missouri State University Students</p>
         <p><a href="https://www.nwmissouri.edu/csis/">Northwest School of Computer Science</a></p>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
             crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     </footer>
 
 </body>
 
 </html>
+
+<script>
+    var boxCount = 0;
+    var bagCount = 0;
+    var eachCount = 0;
+
+    document.getElementById("box").innerHTML = "Boxes: " + boxCount;
+    document.getElementById("bag").innerHTML = "Bags: " + bagCount;
+    document.getElementById("each").innerHTML = "Each: " + eachCount;
+
+    function subtract(id) {
+        if (id === "box") {
+            if (boxCount > 0) {
+                boxCount -= 1;
+                document.getElementById("box").innerHTML = "Boxes: " + boxCount;
+            }
+        }
+        if (id === "bag") {
+            if (bagCount > 0) {
+                bagCount -= 1;
+                document.getElementById("bag").innerHTML = "Bags: " + bagCount;
+            }
+        }
+        if (id === "each") {
+            if (eachCount > 0) {
+                eachCount -= 1;
+                document.getElementById("each").innerHTML = "Each: " + eachCount;
+            }
+        }
+    }
+
+    function add(id) {
+        if (id === "box") {
+            boxCount += 1;
+            document.getElementById("box").innerHTML = "Boxes: " + boxCount;
+        }
+        if (id === "bag") {
+            bagCount += 1;
+            document.getElementById("bag").innerHTML = "Bags: " + bagCount;
+        }
+        if (id === "each") {
+            eachCount += 1;
+            document.getElementById("each").innerHTML = "Each: " + eachCount;
+        }
+    }
+</script>
