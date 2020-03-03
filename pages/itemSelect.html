@@ -34,16 +34,16 @@
             <div class="d-flex justify-content-center">
                 <div class="col-md-3 p-4">
                     <div class="text-center">
-                        <a href="amountSelect.html" class="btn btn-primary btn-lg button">Clothes</a>
+                        <a href="amountSelect.html" class="btn btn-primary btn-lg button" onclick="setItemType('clothes')">Clothes</a>
                     </div>
                     <div class="text-center">
-                        <a href="amountSelect.html" class="btn btn-primary btn-lg button">Furniture</a>
+                        <a href="amountSelect.html" class="btn btn-primary btn-lg button" onclick="setItemType('furniture')">Furniture</a>
                     </div>
                     <div class="text-center">
-                        <a href="amountSelect.html" class="btn btn-primary btn-lg button">Wares</a>
+                        <a href="amountSelect.html" class="btn btn-primary btn-lg button" onclick="setItemType('wares')">Wares</a>
                     </div>
                     <div class="text-center">
-                        <a href="amountSelect.html" class="btn btn-primary btn-lg button">Miscellaneous</a>
+                        <a href="amountSelect.html" class="btn btn-primary btn-lg button" onclick="setItemType('miscellaneous')">Miscellaneous</a>
                     </div>
                 </div>
             </div>
@@ -65,3 +65,11 @@
 </body>
 
 </html>
+
+<script>
+    
+    function setItemType(type){
+        sessionStorage.setItem("itemType", type);    
+    }
+
+</script>
