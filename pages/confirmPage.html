@@ -16,17 +16,15 @@
 
 <body class="background"> 
   
-    <h2>Confirmation</h2>
+    <h1>Confirmation</h1>
 
 </br>
     <!-- add what is being donated. ex if clothes then list clothes if mulitple then list all being donated -->
     <p class="confirm_title"></p>
 
-    <p class="boxes">Boxes: </p>
-    <p class="bags">Bags: </p>
-    <p class="each">Each: </p>
+    <div id="confirmList">
 
-    <p class="description">Description</p>
+    </div>
 
     <form action="success.html" method="get" id="form_success">
     </form>
@@ -65,4 +63,43 @@
 
     console.log("Orders List: " + sessionStorage.getItem("ordersList"));
 
+    function printInfo(order){
+        console.log(order);
+        var itemType;
+        var unit;
+        if (order.itemType === "clothes"){ // setting proper labels
+            itemType = "Clothes"
+        } 
+        else if (order.itemType === "furniture"){
+            itemType = "Furniture"
+        } 
+        else if (order.itemType === "wares"){
+            itemType = "Wares"
+        } 
+        else if (order.itemType === "miscellaneous"){
+            itemType = "Miscellaneous"
+        } 
+
+        if(order.unit === "box"){
+            unit = "Boxes";
+        }
+        if(order.unit === "bag"){
+            unit = "Bags";
+        }
+        if(order.unit === "each"){
+            unit = "Each";
+        }
+
+        document.getElementById('confirmList').innerHTML += '<h2>' + itemType + '</h2>';
+        document.getElementById('confirmList').innerHTML += '<p>' + unit + ': ' + order.quantity + '</p>';
+        if (JSON.stringify(order.description) !== '{}'){
+            document.getElementById('confirmList').innerHTML += '<p> Description: ' + order.description + '</p>';
+        }
+    }
+
+    // for each order in the sessionStorage orderlist, print the info about that order
+    for (var i = 0; i < JSON.parse(sessionStorage.getItem('ordersList')).length; i++){
+        var order = JSON.parse(sessionStorage.getItem('ordersList'))[i];
+        printInfo(order);
+    }
 </script>
