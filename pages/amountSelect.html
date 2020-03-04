@@ -26,7 +26,7 @@
     </nav>
 
     <header>
-        <h1>Item Type</h1>
+        <h1 id='itemType'>Item Type</h1>
     </header>
 
     <main>
@@ -80,10 +80,10 @@
                 <input class="form-control form-control-lg" type="text" placeholder="Description">
             </div>
             <div class="row justify-content-center p-2">
-                <a href="itemSelect.html" class="btn btn-primary btn-lg button">Add More</a>
+                <a href="itemSelect.html" class="btn btn-primary btn-lg button" onclick='submitOrders()'>Add More</a>
             </div>
             <div class="row justify-content-center p-2">
-                <a href="confirmPage.html" class="btn btn-primary btn-lg button">Submit</a>
+                <a href="confirmPage.html" class="btn btn-primary btn-lg button" onclick='submitOrders()'>Submit</a>
             </div>
         </div>
     </main>
@@ -108,6 +108,21 @@
 </html>
 
 <script>
+
+    var itemType = sessionStorage.getItem("itemType");
+    if (itemType === "clothes"){
+        document.getElementById("itemType").innerHTML = "Clothes";
+    }
+    else if (itemType === "furniture"){
+        document.getElementById("itemType").innerHTML = "Furniture";
+    }
+    else if (itemType === "wares"){
+        document.getElementById("itemType").innerHTML = "Wares";
+    }
+    else if (itemType === "miscellaneous"){
+        document.getElementById("itemType").innerHTML = "Miscellaneous";
+    }
+
     var boxCount = 0;
     var bagCount = 0;
     var eachCount = 0;
@@ -151,4 +166,33 @@
             document.getElementById("each").innerHTML = "Each: " + eachCount;
         }
     }
+
+    function createOrder(unit, quantity){ // on submit, multiple times if multiple units increased
+        var newOrder = new Object();
+        newOrder.itemType = sessionStorage.getItem("itemType"); // from previous page
+        newOrder.unit = unit;
+        newOrder.quantity = quantity;
+
+        if(sessionStorage.ordersList){ // if orders list exists, parse it
+            orders = JSON.parse(sessionStorage.getItem('ordersList'));
+        } else {
+            orders = []; // if orders list doesn't exist, create it
+        }
+        orders.push(newOrder); // push new order to list
+        sessionStorage.setItem('ordersList', JSON.stringify(orders)); // reset new list in sessionstorage
+    }
+
+    function submitOrders(){
+        // find which orders to submit based on units
+        if (boxCount > 0){
+            createOrder('box', boxCount);
+        }
+        if (bagCount > 0){
+            createOrder('bag', bagCount);
+        }
+        if (eachCount > 0){
+            createOrder('each', eachCount);
+        }
+    }
+
 </script>
