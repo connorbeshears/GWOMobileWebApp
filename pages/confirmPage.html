@@ -30,8 +30,7 @@
 
     <form action="success.html" method="get" id="form_success">
     </form>
-    <button type="submit" form="form_success" class="btn btn-primary" value="Submit">Submit and Print</button>
-    <br>
+    <button type="submit" form="form_success" class="btn btn-primary" value="Submit" onclick="window.print()">Submit and Print</button>
 
     <form action="confirmPageCancel.html" method="get" id="form_cancel">
     </form>
@@ -60,3 +59,9 @@
 </body>
 
 </html>
+
+<script>
+
+    console.log("Orders List: " + sessionStorage.getItem("ordersList"));
+
+</script>
