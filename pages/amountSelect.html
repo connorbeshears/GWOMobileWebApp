@@ -77,7 +77,7 @@
                 <div class="col-2"></div>
             </div>
             <div class="row justify-content-center p-2">
-                <input class="form-control form-control-lg" type="text" placeholder="Description" id="description">
+                <input class="form-control form-control-lg" type="text" placeholder="Description">
             </div>
             <div class="row justify-content-center p-2">
                 <a href="itemSelect.html" class="btn btn-primary btn-lg button" onclick='submitOrders()'>Add More</a>
@@ -172,7 +172,6 @@
         newOrder.itemType = sessionStorage.getItem("itemType"); // from previous page
         newOrder.unit = unit;
         newOrder.quantity = quantity;
-        newOrder.description = document.getElementById("description").value;
 
         if(sessionStorage.ordersList){ // if orders list exists, parse it
             orders = JSON.parse(sessionStorage.getItem('ordersList'));
