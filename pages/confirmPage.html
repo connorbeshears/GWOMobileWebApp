@@ -2,23 +2,24 @@
 <html lang="en">
 
 <head>
-    <title>Goodwill of Omaha: Donation Confirm</title> <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <title>Goodwill of Omaha: Donation Confirm</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="../styles/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
 
 </head>
 
-<body class="background loginDiv"> 
-  
+<body class="background loginDiv">
+
     <h1>Confirmation</h1>
 
-</br>
+    </br>
     <!-- add what is being donated. ex if clothes then list clothes if mulitple then list all being donated -->
     <p class="confirm_title"></p>
 
@@ -27,15 +28,16 @@
 
     <form action="success.html" method="get" id="form_success">
     </form>
-    <button type="submit" form="form_success" class="btn btn-primary" value="Submit" onclick="window.print()">Submit and Print</button>
+    <button type="submit" form="form_success" class="btn btn-primary" value="Submit" onclick="window.print()">Submit and
+        Print</button>
 
     <form action="confirmPageCancel.html" method="get" id="form_cancel">
     </form>
-    <button type="submit" form="form_cancel" class="btn btn-primary"  value="Submit">Cancel</button>
+    <button type="submit" form="form_cancel" class="btn btn-primary" value="Submit">Cancel</button>
 
     <!-- <button class="submit_and_print">Submit and Print</button> -->
     <!-- <button class="cancel">Cancel</button> -->
-    
+
 
 
     <footer class="container-fluid text-center disclaimer">
@@ -61,44 +63,91 @@
 
     console.log("Orders List: " + sessionStorage.getItem("ordersList"));
 
-    function printInfo(order){
-        console.log(order);
+    var clothesIndexes = [];
+    var furnitureIndexes = [];
+    var waresIndexes = [];
+    var miscellaneousIndexes = [];
+    var parsedOrdersList = [];
+    let typesMap = new Map([
+        ['clothes', []],
+        ['furniture', []],
+        ['wares', []],
+        ['miscellaneous', []],
+    ]);
+
+    function printByIndexes(orders, indexes, itemType) {
+        console.log('length' + indexes.length)
+        console.log('list: ' + JSON.stringify(indexes));
+        console.log('order0: ' + JSON.stringify(orders[indexes[0]]));
+        console.log('order1: ' + JSON.stringify(orders[indexes[1]]));
+        var i;
+        for (i = 0; i < indexes.length; i++) {
+            console.log('i'+i)
+            if (i === 0) { // print item type once per item
+                document.getElementById('confirmList').innerHTML += '<h2>' + itemType + '</h2>'; 
+            }
+
+            var order = orders[indexes[i]]
+            console.log('order: ' + JSON.stringify(order));
+
+            if (order.unit === "box") {
+                unit = "Boxes";
+            }
+            if (order.unit === "bag") {
+                unit = "Bags";
+            }
+            if (order.unit === "each") {
+                unit = "Each";
+            }
+            document.getElementById('confirmList').innerHTML += '<p>' + unit + ': ' + order.quantity + '</p>';
+            
+            if (i === (indexes.length - 1)){ // print description at end, if there is one
+                if (JSON.stringify(order.description).length !== 2) {
+                document.getElementById('confirmList').innerHTML += '<p> Description: ' + order.description + '</p>';
+            }
+            }
+        }
+    }
+
+    function printInfo(orders, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes) {
+        console.log(orders);
         var itemType;
         var unit;
-        if (order.itemType === "clothes"){ // setting proper labels
-            itemType = "Clothes"
-        } 
-        else if (order.itemType === "furniture"){
-            itemType = "Furniture"
-        } 
-        else if (order.itemType === "wares"){
-            itemType = "Wares"
-        } 
-        else if (order.itemType === "miscellaneous"){
-            itemType = "Miscellaneous"
-        } 
-
-        if(order.unit === "box"){
-            unit = "Boxes";
-        }
-        if(order.unit === "bag"){
-            unit = "Bags";
-        }
-        if(order.unit === "each"){
-            unit = "Each";
-        }
-
-        document.getElementById('confirmList').innerHTML += '<h2>' + itemType + '</h2>';
-        document.getElementById('confirmList').innerHTML += '<p>' + unit + ': ' + order.quantity + '</p>';
-        if (JSON.stringify(order.description).length !== 0){
-            document.getElementById('confirmList').innerHTML += '<p> Description: ' + order.description + '</p>';
-        }
+        var order;
+        // print info in order
+        itemType = "Clothes";
+        printByIndexes(orders, clothesIndexes, itemType);
+        itemType = "Furniture";
+        printByIndexes(orders, furnitureIndexes, itemType);
+        itemType = "Wares";
+        printByIndexes(orders, waresIndexes, itemType);
+        itemType = "Miscellaneous";
+        printByIndexes(orders, miscellaneousIndexes, itemType);
     }
 
-    // for each order in the sessionStorage orderlist, print the info about that order
-    for (var i = 0; i < JSON.parse(sessionStorage.getItem('ordersList')).length; i++){
-        var order = JSON.parse(sessionStorage.getItem('ordersList'))[i];
-        printInfo(order);
-    }
+    window.onload = function () {
 
+        // for each order in the sessionStorage orderlist, print the info about that order
+        for (var i = 0; i < JSON.parse(sessionStorage.getItem('ordersList')).length; i++) {
+            var order = JSON.parse(sessionStorage.getItem('ordersList'))[i];
+            parsedOrdersList.push(order);
+
+            if (order['itemType'] === 'clothes') {
+                clothesIndexes.push(i);
+            } else if (order['itemType'] === 'furniture') {
+                furnitureIndexes.push(i);
+            } else if (order['itemType'] === 'wares') {
+                waresIndexes.push(i);
+            } else if (order['itemType'] === 'miscellaneous') {
+                miscellaneousIndexes.push(i);
+            }
+        }
+
+        typesMap.set('clothes', clothesIndexes);
+        typesMap.set('furniture', furnitureIndexes);
+        typesMap.set('wares', waresIndexes);
+        typesMap.set('miscellaneous', miscellaneousIndexes);
+
+        printInfo(parsedOrdersList, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes);
+    }
 </script>
