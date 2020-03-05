@@ -38,7 +38,7 @@ function login(){
 
 function lookupManualLoyalty(){
     var xhr = new XMLHttpRequest();
-    var url = "https://goodwillomaha-nw2020.azurewebsites.net/employee/login";
+    var url = "https://goodwillomaha-nw2020.azurewebsites.net/user/info";
     xhr.open("GET", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     var loyaltyNumber = document.getElementById("loyaltyNum").value
@@ -70,16 +70,30 @@ function phoneLookUp() {
 
     //This is our phone number look up call
     var xhr = new XMLHttpRequest();
-    var url = "https://goodwillomaha-nw2020.azurewebsites.net/user/info/phone";
+    var url = "https://goodwillomaha-nw2020.azurewebsites.net/employee/login";
     xhr.open("GET", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
-    var phone = document.getElementById("numLookUp").value;
+    var phone = document.getElementById("numLookUp").value
     var data = JSON.stringify({ 
-       //  "employeeID" : username,
-       //  //"storeID" : storeID,            This will be uncommented when backend is ready
-       
+        "accessKey" : JSON.parse(sessionStorage.getItem("accessKey")).accessKey,
         "phone" : phone
     });
+
+    // This handles the response
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            response = xhr.responseText;
+            var response = xhr.response
+            var tmp = JSON.parse(response)
+            console.log(tmp)
+            if(tmp.error){
+                console.log("Bad fetch")
+            } else {
+                // return all customers under phone number
+            }
+        }
+    }
+    xhr.send(data);
 }
 
 function emailLookUp() {
