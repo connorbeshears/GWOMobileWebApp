@@ -1,6 +1,7 @@
 //NOTE: If this function is not called, no other function on the website will work.
 //      The backend SHOULD return an unauthorized call if this hasn't been run
 function login(){
+    
     //This is our login call and where we get our auth token
     var xhr = new XMLHttpRequest();
     var url = "https://goodwillomaha-nw2020.azurewebsites.net/employee/login";
@@ -14,7 +15,7 @@ function login(){
         //"storeID" : storeID,            This will be uncommented when backend is ready
         "password" : password
     });
-
+    
     // This handles the response
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -63,4 +64,38 @@ function lookupManualLoyalty(){
         }
     }
     xhr.send(data);
+}
+
+function phoneLookUp() {
+
+    //This is our phone number look up call
+    var xhr = new XMLHttpRequest();
+    var url = "https://goodwillomaha-nw2020.azurewebsites.net/employee/login";
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    var phone = document.getElementById("numLookUp").value
+    var data = JSON.stringify({ 
+        "accessKey" : JSON.parse(sessionStorage.getItem("accessKey")).accessKey,
+        "phone" : phone
+    });
+
+    // This handles the response
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            response = xhr.responseText;
+            var response = xhr.response
+            var tmp = JSON.parse(response)
+            console.log(tmp)
+            if(tmp.error){
+                console.log("Bad fetch")
+            } else {
+                // return all customers under phone number
+            }
+        }
+    }
+    xhr.send(data);
+}
+
+function sessionclear() {
+   sessionStorage.clear
 }
