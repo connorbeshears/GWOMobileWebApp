@@ -29,6 +29,7 @@
     <div class="col-md-12 loginDiv">
         <img src="image/goodwillLogo.png" class="img-fluid logo"/>
             <div class="form-group">
+                <label class="text-danger" id="warning" hidden>Username, password, or Store number is incorrect</label>
                  
                 <label for="exampleInputEmail1">
                     Username
@@ -49,7 +50,7 @@
                 </label>
                 <input type="number" class="form-control" id="storeNum" />
             </div>
-            <button type="submit" class="btn btn-primary button" onclick="login()"> 
+            <button class="btn btn-primary button" onclick="login()"> 
                 Login
             </button>
 
