@@ -1,4 +1,5 @@
 function login(){
+    
     //This is our login call and where we get our auth token
     var xhr = new XMLHttpRequest();
     var url = "https://goodwillomaha-nw2020.azurewebsites.net/employee/login";
@@ -12,7 +13,7 @@ function login(){
         //"storeID" : storeID,            This will be uncommented when backend is ready
         "password" : password
     });
-
+    
     // This handles the response
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -25,4 +26,26 @@ function login(){
     xhr.send(data);
 
 
+}
+
+
+
+function phoneLookUp() {
+
+     //This is our phone number look up call
+     var xhr = new XMLHttpRequest();
+     var url = "https://goodwillomaha-nw2020.azurewebsites.net/user/info/phone";
+     xhr.open("GET", url, true);
+     xhr.setRequestHeader("Content-type", "application/json");
+     var phone = document.getElementById("numLookUp").value;
+     var data = JSON.stringify({ 
+        //  "employeeID" : username,
+        //  //"storeID" : storeID,            This will be uncommented when backend is ready
+        
+         "phone" : phone
+     });
+}
+
+function sessionclear() {
+    sessionStorage.clear
 }
