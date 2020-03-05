@@ -1,3 +1,5 @@
+//NOTE: If this function is not called, no other function on the website will work.
+//      The backend SHOULD return an unauthorized call if this hasn't been run
 function login(){
     //This is our login call and where we get our auth token
     var xhr = new XMLHttpRequest();
@@ -18,8 +20,14 @@ function login(){
         if (xhr.readyState == XMLHttpRequest.DONE) {
             response = xhr.responseText;
             var response = xhr.response
-            sessionStorage.setItem("header", response) // get this by sessionStorage.getItem("header")
-            window.location.href = "./pages/mainSelect.html"
+            var tmp = JSON.parse(response)
+            console.log(tmp.error)
+            if(tmp.error){
+                document.getElementById("warning").hidden = false; 
+            } else {
+                sessionStorage.setItem("header", response) // get this by sessionStorage.getItem("header")
+                window.location.href = "./pages/mainSelect.html"
+            }
         }
     }
     xhr.send(data);
