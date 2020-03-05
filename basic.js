@@ -28,24 +28,3 @@ function login(){
 
 }
 
-
-
-function phoneLookUp() {
-
-     //This is our phone number look up call
-     var xhr = new XMLHttpRequest();
-     var url = "https://goodwillomaha-nw2020.azurewebsites.net/user/info/phone";
-     xhr.open("GET", url, true);
-     xhr.setRequestHeader("Content-type", "application/json");
-     var phone = document.getElementById("numLookUp").value;
-     var data = JSON.stringify({ 
-        //  "employeeID" : username,
-        //  //"storeID" : storeID,            This will be uncommented when backend is ready
-        
-         "phone" : phone
-     });
-}
-
-function sessionclear() {
-    sessionStorage.clear
-}
