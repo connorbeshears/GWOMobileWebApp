@@ -108,6 +108,21 @@ function emailLookUp() {
         // "storeID": storeID,
         "email": email
     });
+
+    // Response
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            response = xhr.responseText;
+            var response = xhr.response
+            var tmp = JSON.parse(response)
+            console.log(tmp)
+            if(tmp.error) {
+                console.log("Bad fetch")
+            } else {
+                // Return customers under email
+            }
+        }
+    }
 }
 
 function sessionclear() {
