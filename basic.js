@@ -25,12 +25,42 @@ function login(){
             if(tmp.error){
                 document.getElementById("warning").hidden = false; 
             } else {
-                sessionStorage.setItem("header", response) // get this by sessionStorage.getItem("header")
+                sessionStorage.setItem("accessKey", response) // get this by sessionStorage.getItem("accessKey")
                 window.location.href = "./pages/mainSelect.html"
             }
         }
     }
     xhr.send(data);
+}
 
 
+
+function lookupManualLoyalty(){
+    var xhr = new XMLHttpRequest();
+    var url = "https://goodwillomaha-nw2020.azurewebsites.net/employee/login";
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    var loyaltyNumber = document.getElementById("loyaltyNum").value
+    var data = JSON.stringify({ 
+        "accessKey" : JSON.parse(sessionStorage.getItem("accessKey")).accessKey,
+        "loyaltyID" : loyaltyNumber
+    });
+
+    // This handles the response
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            response = xhr.responseText;
+            var response = xhr.response
+            var tmp = JSON.parse(response)
+            console.log(tmp)
+            if(tmp.error){
+                console.log("Bad fetch")
+            } else {
+                // TODO: get data ready for customer list 
+                // Will need to do some data handling here to move to the customer list
+                // Maybe make this a uniform function for all the look ups? 
+            }
+        }
+    }
+    xhr.send(data);
 }
