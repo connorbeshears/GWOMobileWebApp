@@ -82,6 +82,20 @@ function phoneLookUp() {
     });
 }
 
+function emailLookUp() {
+    // Email lookup call
+    var xhr = new XMLHttpRequest();
+    var url = "https://goodwillomaha-nw2020.azurewebsites.net/user/info/email";
+    xhr.open("GET", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    var email = document.getElementById("emailLookUp").value;
+    var data = JSON.stringify({
+        // "employeeID": username,
+        // "storeID": storeID,
+        "email": email
+    });
+}
+
 function sessionclear() {
    sessionStorage.clear
 }
