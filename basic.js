@@ -37,7 +37,7 @@ function login(){
 
 function lookupManualLoyalty(){
     var xhr = new XMLHttpRequest();
-    var url = "https://goodwillomaha-nw2020.azurewebsites.net/employee/login";
+    var url = "https://goodwillomaha-nw2020.azurewebsites.net/user/info";
     xhr.open("GET", url, true);
     xhr.setRequestHeader("Content-type", "application/json");
     var loyaltyNumber = document.getElementById("loyaltyNum").value
