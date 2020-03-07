@@ -1,7 +1,7 @@
 //NOTE: If this function is not called, no other function on the website will work.
 //      The backend SHOULD return an unauthorized call if this hasn't been run
 function login(){
-    
+    console.log("running login")
     //This is our login call and where we get our auth token
     var xhr = new XMLHttpRequest();
     var url = "https://goodwillomaha-nw2020.azurewebsites.net/employee/login";
@@ -22,13 +22,15 @@ function login(){
             response = xhr.responseText;
             var response = xhr.response
             var tmp = JSON.parse(response)
-            console.log(tmp.error)
+            console.log(tmp)
             if(tmp.error){
                 document.getElementById("warning").hidden = false; 
             } else {
                 sessionStorage.setItem("accessKey", response) // get this by sessionStorage.getItem("accessKey")
                 window.location.href = "./pages/mainSelect.html"
             }
+        } else if (xhr.status == 500 || xhr.status == 404){
+            document.getElementById("serviceError").hidden = false;
         }
     }
     xhr.send(data);
@@ -38,15 +40,10 @@ function login(){
 
 function lookupManualLoyalty(){
     var xhr = new XMLHttpRequest();
-    var url = "https://goodwillomaha-nw2020.azurewebsites.net/user/info";
-    xhr.open("GET", url, true);
-    xhr.setRequestHeader("Content-type", "application/json");
     var loyaltyNumber = document.getElementById("loyaltyNum").value
-    var data = JSON.stringify({ 
-        "accessKey" : JSON.parse(sessionStorage.getItem("accessKey")).accessKey,
-        "loyaltyID" : loyaltyNumber
-    });
-
+    var aK = JSON.parse(sessionStorage.getItem("accessKey")).accessKey
+    var url = "https://goodwillomaha-nw2020.azurewebsites.net/customer/info?accessKey=" + aK + "&loyaltyID=" + loyaltyNumber;
+    xhr.open("GET", url, true);
     // This handles the response
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
