@@ -1,66 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="robots" content="noindex">
     <title>Goodwill Receipt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>	
-	.bcenter{
-		background-color: #4CAF50; /* Green */
-		color: white;
-		padding: 18px 30px;
-		margin-left: 46%;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		}
-	
+    <style>
+        .bcenter {
+            background-color: #4CAF50;
+            /* Green */
+            color: white;
+            padding: 18px 30px;
+            margin-left: 46%;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
     </style>
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">    
-	<link rel="stylesheet" type="text/css" href="../styles/mystyle.css">
-    
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" type="text/css" href="../styles/mystyle.css">
+
 </head>
- <body>
-	<div class="container">
-    <div class="row" id="printableArea" >   
-        <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3" >
-            <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <address>
-                        <strong>Customer Name</strong>
-                        <br>
-                        Address 1
-                        <br>
-                        Address 2
-                        <br>
-                        P: Phone #
-                    </address>
+
+<body>
+    <div class="container">
+        <div class="row" id="printableArea">
+            <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <address>
+                            <strong>Customer Name</strong>
+                            <br>
+                            Address 1
+                            <br>
+                            Address 2
+                            <br>
+                            P: Phone #
+                        </address>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                        <p>
+                            <em>Date: ##/##/####</em>
+                        </p>
+                        <p>
+                            <em>Receipt #: #######</em>
+                        </p>
+                    </div>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-                    <p>
-                        <em>Date: ##/##/####</em>
-                    </p>
-                    <p>
-                        <em>Receipt #: #######</em>
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="text-center">
-                    <h1>Receipt</h1>
-                </div>
-                </span>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Item Donated</th>
-                            <th>Quantity</th>
-                           
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
+                <div class="row">
+                    <div class="text-center">
+                        <h1>Receipt</h1>
+                    </div>
+                    </span>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Item Donated</th>
+                                <th>Quantity</th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="table">
+                            <!-- <tr>
                             <td class="col-md-9"><em>Clothes</em></h4></td>
                             <td class="col-md-1" style="text-align: center"> # </td>
                            
@@ -69,44 +71,89 @@
                             <td class="col-md-9"><em>Furniture</em></h4></td>
                             <td class="col-md-1" style="text-align: center"> # </td>
                          
-                        </tr>
-                        
-                    </tbody>
-                </table>
-                
-				
+                        </tr> -->
+
+                        </tbody>
+                    </table>
+
+
+                </div>
             </div>
         </div>
+        <input class="bcenter" class="center" type="button" onclick="printDiv('printableArea')" value="Print" />
     </div>
-	<input class="bcenter" class="center" type="button" onclick="printDiv('printableArea')" value="Print"/>
-	</div>
-	
-	<footer class="container-fluid text-center disclaimer">
+
+    <footer class="container-fluid text-center disclaimer">
         <p>&copy Goodwill of Omaha</p>
         <p>Created by Northwest Missouri State University Students</p>
         <p><a href="https://www.nwmissouri.edu/csis/">Northwest School of Computer Science</a></p>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
             crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     </footer>
 </body>
+
 </html>
 
 <script>
-function printDiv(divName) {
-     var printContents = document.getElementById(divName).innerHTML;
-     var originalContents = document.body.innerHTML;
+    var clothesIndexes = [];
+    var furnitureIndexes = [];
+    var waresIndexes = [];
+    var miscellaneousIndexes = [];
+    var parsedOrdersList = [];
 
-     document.body.innerHTML = printContents;
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
 
-     window.print();
+        document.body.innerHTML = printContents;
 
-     document.body.innerHTML = originalContents;
-}
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+
+    // add a row for each type of item donated
+    function printRow(indexes, itemType) {
+        for (var i = 0; i < indexes.length; i++) { // for each item in {type}list
+            if (i === 0) { // print item type once per set of items
+                document.getElementById('table').innerHTML +=
+                    "<tr>" +
+                    "<td class=\"col-md-9\"><em>" + itemType + "</em></td>" +
+                    "<td class=\"col-md-1\" style=\"text-align: center\">" + indexes.length + "</td>" +
+                    "</tr>";
+            }
+        }
+    }
+
+    window.onload = function () {
+        // for each order in the sessionStorage orderlist, categorize it for printing
+        for (var i = 0; i < JSON.parse(sessionStorage.getItem('ordersList')).length; i++) {
+            var order = JSON.parse(sessionStorage.getItem('ordersList'))[i];
+            parsedOrdersList.push(order); // add parsed order to list
+            if (order['itemType'] === 'clothes') { // categorize by itemType for printing
+                clothesIndexes.push(i);
+            } else if (order['itemType'] === 'furniture') {
+                furnitureIndexes.push(i);
+            } else if (order['itemType'] === 'wares') {
+                waresIndexes.push(i);
+            } else if (order['itemType'] === 'miscellaneous') {
+                miscellaneousIndexes.push(i);
+            }
+        }
+
+        var itemType;
+        // print info in order, categorized by itemType
+        itemType = "Clothes";
+        printRow(clothesIndexes, itemType);
+        itemType = "Furniture";
+        printRow(furnitureIndexes, itemType);
+        itemType = "Wares";
+        printRow(waresIndexes, itemType);
+        itemType = "Miscellaneous";
+        printRow(miscellaneousIndexes, itemType);
+    }
 </script>
