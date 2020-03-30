@@ -170,13 +170,13 @@
         newOrder.quantity = quantity;
         newOrder.description = document.getElementById("description").value;
 
-        if(sessionStorage.ordersList){ // if orders list exists, parse it
-            orders = JSON.parse(sessionStorage.getItem('ordersList'));
+        if(sessionStorage.items){ // if orders list exists, parse it
+            orders = JSON.parse(sessionStorage.getItem('items'));
         } else {
             orders = []; // if orders list doesn't exist, create it
         }
         orders.push(newOrder); // push new order to list
-        sessionStorage.setItem('ordersList', JSON.stringify(orders)); // reset new list in sessionstorage
+        sessionStorage.setItem('items', JSON.stringify(orders)); // reset new list in sessionstorage
     }
 
     function submitOrders(){

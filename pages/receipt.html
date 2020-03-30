@@ -103,7 +103,7 @@
     var furnitureIndexes = [];
     var waresIndexes = [];
     var miscellaneousIndexes = [];
-    var parsedOrdersList = [];
+    var parsedItems = [];
 
     function printDiv(divName) {
         var printContents = document.getElementById(divName).innerHTML;
@@ -131,9 +131,9 @@
 
     window.onload = function () {
         // for each order in the sessionStorage orderlist, categorize it for printing
-        for (var i = 0; i < JSON.parse(sessionStorage.getItem('ordersList')).length; i++) {
-            var order = JSON.parse(sessionStorage.getItem('ordersList'))[i];
-            parsedOrdersList.push(order); // add parsed order to list
+        for (var i = 0; i < JSON.parse(sessionStorage.getItem('items')).length; i++) {
+            var order = JSON.parse(sessionStorage.getItem('items'))[i];
+            parsedItems.push(order); // add parsed order to list
             if (order['itemType'] === 'clothes') { // categorize by itemType for printing
                 clothesIndexes.push(i);
             } else if (order['itemType'] === 'furniture') {

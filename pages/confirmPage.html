@@ -63,13 +63,13 @@
 
 <script>
 
-    console.log("Orders List: " + sessionStorage.getItem("ordersList"));
+    console.log("Orders List: " + sessionStorage.getItem("items"));
 
     var clothesIndexes = [];
     var furnitureIndexes = [];
     var waresIndexes = [];
     var miscellaneousIndexes = [];
-    var parsedOrdersList = [];
+    var parsedItems = [];
     var description = "";
 
     function printByIndexes(orders, indexes, itemType) {
@@ -128,9 +128,9 @@
         sessionStorage.setItem("date", date);
 
         // for each order in the sessionStorage orderlist, print the info about that order
-        for (var i = 0; i < JSON.parse(sessionStorage.getItem('ordersList')).length; i++) {
-            var order = JSON.parse(sessionStorage.getItem('ordersList'))[i]; 
-            parsedOrdersList.push(order); // add parsed order to list
+        for (var i = 0; i < JSON.parse(sessionStorage.getItem('items')).length; i++) {
+            var order = JSON.parse(sessionStorage.getItem('items'))[i]; 
+            parsedItems.push(order); // add parsed order to list
             if (order['itemType'] === 'clothes') { // categorize by itemType for printing
                 clothesIndexes.push(i);
             } else if (order['itemType'] === 'furniture') {
@@ -141,7 +141,7 @@
                 miscellaneousIndexes.push(i);
             }
         }
-        printInfo(parsedOrdersList, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes);
+        printInfo(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes);
         sessionStorage.setItem("description", description);
         console.log(sessionStorage.getItem("description"));
     }
