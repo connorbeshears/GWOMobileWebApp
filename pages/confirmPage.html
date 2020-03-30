@@ -70,6 +70,7 @@
     var waresIndexes = [];
     var miscellaneousIndexes = [];
     var parsedOrdersList = [];
+    var description = "";
 
     function printByIndexes(orders, indexes, itemType) {
         for (var i = 0; i < indexes.length; i++) { // for each item in {type}list
@@ -91,6 +92,8 @@
             if (i === (indexes.length - 1)) { // print description at end, if there is one
                 if (JSON.stringify(order.description).length !== 2) {
                     document.getElementById('confirmList').innerHTML += '<p> Description: ' + order.description + '</p>';
+                    // concatenate for description variable
+                    description = description + order.description + ". ";
                 }
             }
         }
@@ -139,5 +142,7 @@
             }
         }
         printInfo(parsedOrdersList, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes);
+        sessionStorage.setItem("description", description);
+        console.log(sessionStorage.getItem("description"));
     }
 </script>
