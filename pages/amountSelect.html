@@ -14,6 +14,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../styles/mystyle.css">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
+    <script src="../basic.js"></script>
 </head>
 
 <body class="background">
@@ -125,71 +126,6 @@
 
     document.getElementById("box").innerHTML = "Boxes: " + boxCount;
     document.getElementById("bag").innerHTML = "Bags: " + bagCount;
-    document.getElementById("each").innerHTML = "Each: " + eachCount;
-
-    function subtract(id) {
-        if (id === "box") {
-            if (boxCount > 0) {
-                boxCount -= 1;
-                document.getElementById("box").innerHTML = "Boxes: " + boxCount;
-            }
-        }
-        if (id === "bag") {
-            if (bagCount > 0) {
-                bagCount -= 1;
-                document.getElementById("bag").innerHTML = "Bags: " + bagCount;
-            }
-        }
-        if (id === "each") {
-            if (eachCount > 0) {
-                eachCount -= 1;
-                document.getElementById("each").innerHTML = "Each: " + eachCount;
-            }
-        }
-    }
-
-    function add(id) {
-        if (id === "box") {
-            boxCount += 1;
-            document.getElementById("box").innerHTML = "Boxes: " + boxCount;
-        }
-        if (id === "bag") {
-            bagCount += 1;
-            document.getElementById("bag").innerHTML = "Bags: " + bagCount;
-        }
-        if (id === "each") {
-            eachCount += 1;
-            document.getElementById("each").innerHTML = "Each: " + eachCount;
-        }
-    }
-
-    function createOrder(unit, quantity){ // on submit, multiple times if multiple units increased
-        var newOrder = new Object();
-        newOrder.itemType = sessionStorage.getItem("itemType"); // from previous page
-        newOrder.unit = unit;
-        newOrder.quantity = quantity;
-        newOrder.description = document.getElementById("description").value;
-
-        if(sessionStorage.items){ // if orders list exists, parse it
-            orders = JSON.parse(sessionStorage.getItem('items'));
-        } else {
-            orders = []; // if orders list doesn't exist, create it
-        }
-        orders.push(newOrder); // push new order to list
-        sessionStorage.setItem('items', JSON.stringify(orders)); // reset new list in sessionstorage
-    }
-
-    function submitOrders(){
-        // find which orders to submit based on units
-        if (boxCount > 0){
-            createOrder('box', boxCount);
-        }
-        if (bagCount > 0){
-            createOrder('bag', bagCount);
-        }
-        if (eachCount > 0){
-            createOrder('each', eachCount);
-        }
-    }
+    document.getElementById("each").innerHTML = "Each: " + eachCount;    
 
 </script>

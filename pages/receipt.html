@@ -20,6 +20,7 @@
     </style>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" type="text/css" href="../styles/mystyle.css">
+    <script src="../basic.js"></script>
 
 </head>
 
@@ -63,16 +64,6 @@
                             </tr>
                         </thead>
                         <tbody id="table">
-                            <!-- <tr>
-                            <td class="col-md-9"><em>Clothes</em></h4></td>
-                            <td class="col-md-1" style="text-align: center"> # </td>
-                           
-                        </tr>
-                        <tr>
-                            <td class="col-md-9"><em>Furniture</em></h4></td>
-                            <td class="col-md-1" style="text-align: center"> # </td>
-                         
-                        </tr> -->
 
                         </tbody>
                     </table>
@@ -117,59 +108,7 @@
         document.body.innerHTML = originalContents;
     }
 
-    // add a row for each type of item donated
-    function printRow(orders, indexes, itemType) {
-        for (var i = 0; i < indexes.length; i++) { // for each item in {type}list
-            var order = orders[indexes[i]] // find specific order
-            if (order.unit === "box") {
-                unit = "Boxes";
-            }
-            if (order.unit === "bag") {
-                unit = "Bags";
-            }
-            if (order.unit === "each") {
-                unit = "Each";
-            }
-
-            document.getElementById('table').innerHTML +=
-                "<tr>" +
-                "<td class=\"col-md-9\"><em>" + itemType + "</em></td>" +
-                "<td class=\"col-md-9\"><em>" + unit + "</em></td>" +
-                "<td class=\"col-md-1\" style=\"text-align: center\">" + order.quantity + "</td>" +
-                "</tr>";
-        }
-    }
-
-    function printInfo(orders, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes) {
-        var itemType;
-        // print info in order, categorized by itemType
-        itemType = "Clothes";
-        printRow(orders, clothesIndexes, itemType);
-        itemType = "Furniture";
-        printRow(orders, furnitureIndexes, itemType);
-        itemType = "Wares";
-        printRow(orders, waresIndexes, itemType);
-        itemType = "Miscellaneous";
-        printRow(orders, miscellaneousIndexes, itemType);
-    }
-
     window.onload = function () {
-        // for each order in the sessionStorage orderlist, categorize it for printing
-        for (var i = 0; i < JSON.parse(sessionStorage.getItem('items')).length; i++) {
-            var order = JSON.parse(sessionStorage.getItem('items'))[i];
-            parsedItems.push(order); // add parsed order to list
-            if (order['itemType'] === 'clothes') { // categorize by itemType for printing
-                clothesIndexes.push(i);
-            } else if (order['itemType'] === 'furniture') {
-                furnitureIndexes.push(i);
-            } else if (order['itemType'] === 'wares') {
-                waresIndexes.push(i);
-            } else if (order['itemType'] === 'miscellaneous') {
-                miscellaneousIndexes.push(i);
-            }
-        }
-
-        printInfo(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes);
-
+        printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)
     }
 </script>
