@@ -57,6 +57,7 @@
                         <thead>
                             <tr>
                                 <th>Item Donated</th>
+                                <th>Unit</th>
                                 <th>Quantity</th>
 
                             </tr>
@@ -117,16 +118,39 @@
     }
 
     // add a row for each type of item donated
-    function printRow(indexes, itemType) {
+    function printRow(orders, indexes, itemType) {
         for (var i = 0; i < indexes.length; i++) { // for each item in {type}list
-            if (i === 0) { // print item type once per set of items
-                document.getElementById('table').innerHTML +=
-                    "<tr>" +
-                    "<td class=\"col-md-9\"><em>" + itemType + "</em></td>" +
-                    "<td class=\"col-md-1\" style=\"text-align: center\">" + indexes.length + "</td>" +
-                    "</tr>";
+            var order = orders[indexes[i]] // find specific order
+            if (order.unit === "box") {
+                unit = "Boxes";
             }
+            if (order.unit === "bag") {
+                unit = "Bags";
+            }
+            if (order.unit === "each") {
+                unit = "Each";
+            }
+
+            document.getElementById('table').innerHTML +=
+                "<tr>" +
+                "<td class=\"col-md-9\"><em>" + itemType + "</em></td>" +
+                "<td class=\"col-md-9\"><em>" + unit + "</em></td>" +
+                "<td class=\"col-md-1\" style=\"text-align: center\">" + order.quantity + "</td>" +
+                "</tr>";
         }
+    }
+
+    function printInfo(orders, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes) {
+        var itemType;
+        // print info in order, categorized by itemType
+        itemType = "Clothes";
+        printRow(orders, clothesIndexes, itemType);
+        itemType = "Furniture";
+        printRow(orders, furnitureIndexes, itemType);
+        itemType = "Wares";
+        printRow(orders, waresIndexes, itemType);
+        itemType = "Miscellaneous";
+        printRow(orders, miscellaneousIndexes, itemType);
     }
 
     window.onload = function () {
@@ -145,15 +169,7 @@
             }
         }
 
-        var itemType;
-        // print info in order, categorized by itemType
-        itemType = "Clothes";
-        printRow(clothesIndexes, itemType);
-        itemType = "Furniture";
-        printRow(furnitureIndexes, itemType);
-        itemType = "Wares";
-        printRow(waresIndexes, itemType);
-        itemType = "Miscellaneous";
-        printRow(miscellaneousIndexes, itemType);
+        printInfo(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes);
+
     }
 </script>
