@@ -224,6 +224,7 @@ function printOrders(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes
 }
 
 function printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes){
+    var total = 0;
     // for each order in the sessionStorage orderlist, categorize it for printing
     for (var i = 0; i < JSON.parse(sessionStorage.getItem('items')).length; i++) {
         var order = JSON.parse(sessionStorage.getItem('items'))[i];
@@ -237,9 +238,15 @@ function printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, 
         } else if (order['itemType'] === 'miscellaneous') {
             miscellaneousIndexes.push(i);
         }
+        total += order.quantity;
     }
     // add a row for each item donated
     printInfoRow(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes);
+    document.getElementById("total").innerHTML += total + " items donated";
+}
+
+function getTotalItems(){
+
 }
 
 function getDate() {
