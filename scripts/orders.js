@@ -139,10 +139,6 @@ function printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, 
 
 
 
-function getTotalItems(){
-
-}
-
 function getDate() {
     var today = new Date();
     var dd = today.getDate();
