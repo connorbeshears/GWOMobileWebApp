@@ -12,22 +12,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
+    <script src="../basic.js"></script>
 
 </head>
 
-<body class="background">
+<body class="background" onload="generateCustomerList()">
     <div class="p-2">
         <a href="./mainSelect.html" class="logout">Back</a>
     </div>
     <div class="d-flex justify-content-center pb-4">
         <h1>Customers</h1>
     </div>
-    <div class="list-group">
-        <a href="./itemSelect.html" class="list-group-item list-group-item-action p-4 background">Customer Name</a>
-        <a href="./itemSelect.html" class="list-group-item list-group-item-action p-4 background">Customer Name</a>
-        <a href="./itemSelect.html" class="list-group-item list-group-item-action p-4 background">Customer Name</a>
-        <a href="./itemSelect.html" class="list-group-item list-group-item-action p-4 background">Customer Name</a>
-        <a href="./itemSelect.html" class="list-group-item list-group-item-action p-4 background">Customer Name</a>
+    <div class="list-group" id="custList">
+        
       </div>
     <footer class="container-fluid text-center disclaimer fixed-bottom">
         <p>&copy Goodwill of Omaha</p>

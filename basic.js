@@ -28,7 +28,7 @@ function login() {
                 document.getElementById("serviceError").hidden = true;
                 document.getElementById("warning").hidden = false;
             } else {
-                sessionStorage.setItem("accessKey", JSON.parse(response).accessKey) // get this by sessionStorage.getItem("accessKey")
+                sessionStorage.setItem("accessKey", JSON.parse(response).accessToken) // get this by sessionStorage.getItem("accessKey")
                 window.location.href = "./pages/mainSelect.html"
             }
         } else if (xhr.status == 500 || xhr.status == 404) {
@@ -47,7 +47,7 @@ function lookupManualLoyalty() {
     var aK = sessionStorage.getItem("accessKey")
     var turl = url + "customer/" + loyaltyNumber + "/info";
     xhr.open("GET", turl, true);
-    xhr.setRequestHeader("Authorization", sessionStorage.getItem("accessKey"));
+    xhr.setRequestHeader("Authorization", "Bearer " + sessionStorage.getItem("accessKey"));
     // This handles the response
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -57,7 +57,9 @@ function lookupManualLoyalty() {
                 console.log(tmp)
                 console.log("Bad fetch")
             } else {
-                console.log(JSON.parse(response))
+                //save customer(s) info to session storage
+                sessionStorage.setItem("customerInfo", response)
+                window.location.href = "customerList.html"
             }
         }
     }
@@ -142,6 +144,12 @@ function sessionclear() {
     sessionStorage.clear
 }
 
+// Generates the list for the customer display page
+function generateCustomerList(){
+    var customerData = JSON.parse(sessionStorage.getItem("customerInfo"))
+    console.log(customerData)
+    document.getElementById('custList').innerHTML += '<a href="./itemSelect.html" class="list-group-item list-group-item-action p-4 background" >' + customerData.firstName + " " + customerData.lastName + '</a>'
+}
 
 
 function printByIndexes(orders, indexes, itemType) {
