@@ -13,6 +13,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
     <script src="../basic.js"></script>
+    <script src="../scripts/orders.js"></script>
 
 </head>
 
@@ -76,19 +77,5 @@
         sessionStorage.setItem("date", date);
         sessionStorage.setItem("description", description);
         printOrders(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)
-
-        // JSON format:
-        // {
-        //     "date": string,  <-- stored in sessionStorage.getItem("date")
-        //         "items": [   <-- sessionStorage.getItem("items")
-        //             {
-        //                 "itemType": string,  <-- JSON.parse(sessionStorage.getItem('items'))[i].itemType
-        //                 "unit": string,      <-- JSON.parse(sessionStorage.getItem('items'))[i].unit
-        //                 "quantity": int      <-- JSON.parse(sessionStorage.getItem('items'))[i].quantity
-        //             }
-        //         ]
-        //     "description": string    <-- sessionStorage.getItem("description")
-        // }
-
     }
 </script>
