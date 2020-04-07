@@ -9,21 +9,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+    <script src= "../basic.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../styles/style.css">
 </head>
 
-<body class="background">
+<body class="background" onload="generateItemSelect()">
     <div class="p-2">
         <a href="./customerList.html" class="logout">Back</a>
     </div>
     <div class="container loginDiv">
 
         <main>
-            <h1>CUSTOMER INFORMATION</h1>
-            <h2>Rewards Number</h2>
+            <h1 id = "name"></h1>
+            <h2 id = "rewards"></h2>
 
             <div class="d-flex justify-content-center">
                 <div class="col-md-3 p-4">

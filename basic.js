@@ -28,7 +28,7 @@ function login() {
                 document.getElementById("serviceError").hidden = true;
                 document.getElementById("warning").hidden = false;
             } else {
-                sessionStorage.setItem("accessKey", JSON.parse(response).accessToken) // get this by sessionStorage.getItem("accessKey")
+                sessionStorage.setItem("accessKey", JSON.parse(response).accessToken) // Need to change this to be more secure
                 window.location.href = "./pages/mainSelect.html"
             }
         } else if (xhr.status == 500 || xhr.status == 404) {
@@ -44,7 +44,6 @@ function login() {
 function lookupManualLoyalty() {
     var xhr = new XMLHttpRequest();
     var loyaltyNumber = document.getElementById("loyaltyNum").value
-    var aK = sessionStorage.getItem("accessKey")
     var turl = url + "customer/" + loyaltyNumber + "/info";
     xhr.open("GET", turl, true);
     xhr.setRequestHeader("Authorization", "Bearer " + sessionStorage.getItem("accessKey"));
@@ -59,6 +58,7 @@ function lookupManualLoyalty() {
             } else {
                 //save customer(s) info to session storage
                 sessionStorage.setItem("customerInfo", response)
+                sessionStorage.setItem("rewardsNum", loyaltyNumber)
                 window.location.href = "customerList.html"
             }
         }
@@ -148,6 +148,10 @@ function sessionclear() {
 // Generates the list for the customer display page
 function generateCustomerList(){
     var customerData = JSON.parse(sessionStorage.getItem("customerInfo"))
-    console.log(customerData)
     document.getElementById('custList').innerHTML += '<a href="./itemSelect.html" class="list-group-item list-group-item-action p-4 background" >' + customerData.firstName + " " + customerData.lastName + '</a>'
+}
+
+function generateItemSelect(){
+    document.getElementById("name").innerHTML = JSON.parse(sessionStorage.getItem("customerInfo")).firstName + " " + JSON.parse(sessionStorage.getItem("customerInfo")).lastName
+    document.getElementById("rewards").innerHTML = sessionStorage.getItem("rewardsNum")
 }
