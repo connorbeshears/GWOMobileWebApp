@@ -1,5 +1,4 @@
 import Quagga from '../dist/quagga.min.js'; // ES6
-const Quagga = require('../dist/quagg.min.js').default; // Common JS (important: default)
 
 Quagga.init({
     inputStream : {
