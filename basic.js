@@ -21,7 +21,6 @@ function login() {
     // This handles the response
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            response = xhr.responseText;
             var response = xhr.response
             var tmp = JSON.parse(response)
             console.log(tmp)
@@ -29,7 +28,7 @@ function login() {
                 document.getElementById("serviceError").hidden = true;
                 document.getElementById("warning").hidden = false;
             } else {
-                sessionStorage.setItem("accessKey", response) // get this by sessionStorage.getItem("accessKey")
+                sessionStorage.setItem("accessKey", JSON.parse(response).accessKey) // get this by sessionStorage.getItem("accessKey")
                 window.location.href = "./pages/mainSelect.html"
             }
         } else if (xhr.status == 500 || xhr.status == 404) {
@@ -45,26 +44,24 @@ function login() {
 function lookupManualLoyalty() {
     var xhr = new XMLHttpRequest();
     var loyaltyNumber = document.getElementById("loyaltyNum").value
-    var aK = JSON.parse(sessionStorage.getItem("accessKey")).accessKey
-    var turl = url + "customer/info?accessKey=" + aK + "&loyaltyID=" + loyaltyNumber;
+    var aK = sessionStorage.getItem("accessKey")
+    var turl = url + "customer/" + loyaltyNumber + "/info";
     xhr.open("GET", turl, true);
+    xhr.setRequestHeader("Authorization", sessionStorage.getItem("accessKey"));
     // This handles the response
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            response = xhr.responseText;
             var response = xhr.response
             var tmp = JSON.parse(response)
-            console.log(tmp)
             if (tmp.error) {
+                console.log(tmp)
                 console.log("Bad fetch")
             } else {
-                // TODO: get data ready for customer list 
-                // Will need to do some data handling here to move to the customer list
-                // Maybe make this a uniform function for all the look ups? 
+                console.log(JSON.parse(response))
             }
         }
     }
-    xhr.send(data);
+    xhr.send();
 }
 
 
