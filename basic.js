@@ -67,11 +67,13 @@ function lookupManualLoyalty() {
     xhr.send(data);
 }
 
-function phoneLookUp() {
 
+
+function phoneLookUp() {
     //This is our phone number look up call
+    console.log("running phone look up")
     var xhr = new XMLHttpRequest();
-    var turl = url + "employee/login";
+    var turl = url + "customer/by/phone/"+phone;
     xhr.open("GET", turl, true);
     xhr.setRequestHeader("Content-type", "application/json");
     var phone = document.getElementById("numLookUp").value
@@ -91,22 +93,28 @@ function phoneLookUp() {
                 console.log("Bad fetch")
             } else {
                 // return all customers under phone number
+                sessionStorage.setItem("customerInfo", response) // get this by sessionStorage.getItem("customerInfo")
+                window.location.href = "./pages/mainSelect.html"
             }
+        } else if (xhr.status == 500 || xhr.status == 404) {
+            document.getElementById("serviceError").hidden = false;
+            document.getElementById("warning").hidden = true;
         }
     }
     xhr.send(data);
 }
 
+
+
 function emailLookUp() {
     // Email lookup call
     var xhr = new XMLHttpRequest();
-    var turl = url + "user/info/email";
+    var email = document.getElementById("emailLookUp").value;
+    var turl = url + "customer/by/email/"+email;
     xhr.open("GET", turl, true);
     xhr.setRequestHeader("Content-type", "application/json");
-    var email = document.getElementById("emailLookUp").value;
     var data = JSON.stringify({
-        // "employeeID": username,
-        // "storeID": storeID,
+        "accessKey": JSON.parse(sessionStorage.getItem("accessKey")).accessKey,
         "email": email
     });
 
@@ -121,14 +129,23 @@ function emailLookUp() {
                 console.log("Bad fetch")
             } else {
                 // Return customers under email
+                sessionStorage.setItem("customerInfo", response) // get this by sessionStorage.getItem("customerInfo")
+                window.location.href = "./pages/mainSelect.html"
             }
+        } else if (xhr.status == 500 || xhr.status == 404) {
+            document.getElementById("serviceError").hidden = false;
+            document.getElementById("warning").hidden = true;
         }
     }
 }
 
+
+
 function sessionclear() {
     sessionStorage.clear
 }
+
+
 
 function printByIndexes(orders, indexes, itemType) {
     for (var i = 0; i < indexes.length; i++) { // for each item in {type}list
@@ -157,6 +174,8 @@ function printByIndexes(orders, indexes, itemType) {
     }
 }
 
+
+
 function printRow(orders, indexes, itemType) {
     for (var i = 0; i < indexes.length; i++) { // for each item in {type}list
         var order = orders[indexes[i]] // find specific order
@@ -179,6 +198,8 @@ function printRow(orders, indexes, itemType) {
     }
 }
 
+
+
 function printInfo(orders, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes) {
     var itemType;
     // print info in order, categorized by itemType
@@ -192,6 +213,8 @@ function printInfo(orders, clothesIndexes, furnitureIndexes, waresIndexes, misce
     printByIndexes(orders, miscellaneousIndexes, itemType);
 }
 
+
+
 function printInfoRow(orders, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes) {
     var itemType;
     // print info in order, categorized by itemType, printing by row
@@ -204,6 +227,8 @@ function printInfoRow(orders, clothesIndexes, furnitureIndexes, waresIndexes, mi
     itemType = "Miscellaneous";
     printRow(orders, miscellaneousIndexes, itemType);
 }
+
+
 
 function printOrders(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes) {
     for (var i = 0; i < JSON.parse(sessionStorage.getItem('items')).length; i++) {
@@ -222,6 +247,8 @@ function printOrders(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes
     // for each order in the sessionStorage orderlist, print the info about that order
     printInfo(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes);
 }
+
+
 
 function printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes){
     var total = 0;
@@ -245,6 +272,8 @@ function printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, 
     document.getElementById("total").innerHTML += total + " items donated";
 }
 
+
+
 function getTotalItems(){
 
 }
@@ -258,6 +287,8 @@ function getDate() {
     if (mm < 10) { mm = '0' + mm }
     var today = dd + mm + yyyy;
 }
+
+
 
 function subtract(id) {
     if (id === "box") {
@@ -280,6 +311,8 @@ function subtract(id) {
     }
 }
 
+
+
 function add(id) {
     if (id === "box") {
         boxCount += 1;
@@ -294,6 +327,8 @@ function add(id) {
         document.getElementById("each").innerHTML = "Each: " + eachCount;
     }
 }
+
+
 
 function createOrder(unit, quantity) { // on submit, multiple times if multiple units increased
     var newOrder = new Object();
@@ -310,6 +345,8 @@ function createOrder(unit, quantity) { // on submit, multiple times if multiple 
     orders.push(newOrder); // push new order to list
     sessionStorage.setItem('items', JSON.stringify(orders)); // reset new list in sessionstorage
 }
+
+
 
 function submitOrders() {
     // find which orders to submit based on units
