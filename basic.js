@@ -55,6 +55,8 @@ function lookupManualLoyalty() {
             if (tmp.error) {
                 console.log(tmp)
                 console.log("Bad fetch")
+                document.getElementById("serviceError").hidden = true;
+                document.getElementById("warning").hidden = false;
             } else {
                 //save customer(s) info to session storage
                 sessionStorage.setItem("customerInfo", response)
@@ -90,6 +92,8 @@ function phoneLookUp() {
             console.log(tmp)
             if (tmp.error) {
                 console.log("Bad fetch")
+                document.getElementById("serviceError").hidden = true;
+                document.getElementById("warning").hidden = false;
             } else {
                 // return all customers under phone number
                 sessionStorage.setItem("customerInfo", response) // get this by sessionStorage.getItem("customerInfo")
