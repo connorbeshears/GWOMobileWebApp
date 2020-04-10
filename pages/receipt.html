@@ -42,8 +42,8 @@
                         </address>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-                        <p>
-                            <em>Date: ##/##/####</em>
+                        <p id="date">
+                            <em>Date: MM/DD/YYYY</em>
                         </p>
                         <p>
                             <em>Receipt #: #######</em>
@@ -112,5 +112,6 @@
 
     window.onload = function () {
         printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)
+        document.getElementById("date").innerHTML = getFormattedDate();
     }
 </script>

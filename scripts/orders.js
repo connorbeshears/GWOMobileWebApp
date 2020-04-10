@@ -139,7 +139,7 @@ function printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, 
 
 
 
-function getDate() {
+function findDate() {
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1;
@@ -147,6 +147,18 @@ function getDate() {
     if (dd < 10) { dd = '0' + dd }
     if (mm < 10) { mm = '0' + mm }
     var today = dd + mm + yyyy;
+    return today;
+}
+
+
+
+function getFormattedDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    var today = mm + "/" + dd + "/" + yyyy;
+    return today;
 }
 
 

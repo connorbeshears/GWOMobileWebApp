@@ -73,7 +73,7 @@
 
     window.onload = function () {
         // store date for outgoing JSON
-        var date = getDate();
+        var date = findDate();
         sessionStorage.setItem("date", date);
         sessionStorage.setItem("description", description);
         printOrders(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)
