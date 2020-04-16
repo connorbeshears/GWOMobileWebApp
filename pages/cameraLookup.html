@@ -123,6 +123,7 @@
             Quagga.onDetected(function (result) {
                 console.log("Barcode detected and processed : [" + result.codeResult.code + "]", result);
                 document.getElementById("cusID").innerHTML = result.codeResult.code;
+                sessionStorage.setItem("loyaltyNum", result.codeResult.code);
             });
         }
 
@@ -136,6 +137,7 @@
             }
         }, false);
     </script>
+    <button class="btn btn-primary btn-lg button" onclick="lookupManualLoyalty()">Lookup</button>
 </body>
 
 
