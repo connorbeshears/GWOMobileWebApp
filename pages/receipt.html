@@ -35,6 +35,7 @@
                     </div>
                     <div class="text-center">
                         <p>
+                            <hr>
                             Thank you for your donation
                             to Goodwill Industries, Inc.
                             a qualified 501 (c) (3)
@@ -46,8 +47,8 @@
                     <div class="text-center">
                         <p>
                             <hr>
-                            Goodwill Industries
-                            15455 Ruggles Street
+                            Goodwill Industries <br>
+                            15455 Ruggles Street <br>
                             Omaha, NE 68116
                         </p>
                     </div>
@@ -64,7 +65,7 @@
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <address>
-                            <strong>Customer Name</strong>
+                            <strong id="name">Customer Name</strong>
                             <br>
                             Address 1
                             <br>
@@ -190,5 +191,6 @@
     window.onload = function () {
         printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)
         document.getElementById("date").innerHTML = getFormattedDate();
+        document.getElementById("name").innerHTML = JSON.parse(sessionStorage.getItem("customerInfo")).firstName + " " + JSON.parse(sessionStorage.getItem("customerInfo")).lastName
     }
 </script>
