@@ -1,3 +1,5 @@
+// Author: Brianne
+
 // JSON format of orders to send to back end:
 //         {
 //             "date": string,  <-- stored in sessionStorage.getItem("date")
