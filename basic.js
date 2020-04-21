@@ -165,3 +165,9 @@ function getPhoneNum(){
     var customerData = JSON.parse(sessionStorage.getItem("customerInfo"))
     return customerData.phone
 }
+
+function getAddress(){
+    var customerData = JSON.parse(sessionStorage.getItem("customerInfo"))
+    return customerData.address.line1 + "<br>" + customerData.address.line2 + "<br>" +
+    customerData.address.city + "<br>" + customerData.address.state + "<br>" + customerData.address.zip
+}

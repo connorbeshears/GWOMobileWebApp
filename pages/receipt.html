@@ -67,11 +67,8 @@
                         <address>
                             <strong id="name">Customer Name</strong>
                             <br>
-                            Address 1
-                            <br>
-                            Address 2
-                            <br>
-                            Phone Number: <div id="phoneNum">Phone #</div>
+                            <div id="address">Address</div>
+                            <div id="phoneNum">Phone #</div>
                         </address>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
@@ -192,6 +189,7 @@
         printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)
         console.log(formatPhoneNum(getPhoneNum()))
         document.getElementById("phoneNum").innerHTML = formatPhoneNum(getPhoneNum());
+        document.getElementById("address").innerHTML = getAddress();
         document.getElementById("date").innerHTML = getFormattedDate();
         document.getElementById("name").innerHTML = JSON.parse(sessionStorage.getItem("customerInfo")).firstName + " " + JSON.parse(sessionStorage.getItem("customerInfo")).lastName
         document.getElementById('storeNum').innerHTML = "Store: " + sessionStorage.getItem("storeNum");
