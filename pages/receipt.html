@@ -82,7 +82,7 @@
                             <em>Receipt #: #######</em>
                         </p>
                         <p>
-                            <em>Store: ##</em>
+                            <em id="storeNum">Store: ##</em>
                         </p>
                     </div>
                 </div>
@@ -192,5 +192,6 @@
         printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)
         document.getElementById("date").innerHTML = getFormattedDate();
         document.getElementById("name").innerHTML = JSON.parse(sessionStorage.getItem("customerInfo")).firstName + " " + JSON.parse(sessionStorage.getItem("customerInfo")).lastName
+        document.getElementById('storeNum').innerHTML = "Store: " + sessionStorage.getItem("storeNum");
     }
 </script>

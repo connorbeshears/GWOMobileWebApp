@@ -12,6 +12,7 @@ function login() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value
     var storeID = document.getElementById("storeNum").value
+    sessionStorage.setItem("storeNum", storeID);
     var data = JSON.stringify({
         "employeeID": username,
         //"storeID" : storeID,            This will be uncommented when backend is ready
