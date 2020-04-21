@@ -12,6 +12,7 @@ function login() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value
     var storeID = document.getElementById("storeNum").value
+    sessionStorage.setItem("storeNum", storeID);
     var data = JSON.stringify({
         "employeeID": username,
         //"storeID" : storeID,            This will be uncommented when backend is ready
@@ -158,4 +159,15 @@ function generateCustomerList(){
 function generateItemSelect(){
     document.getElementById("name").innerHTML = JSON.parse(sessionStorage.getItem("customerInfo")).firstName + " " + JSON.parse(sessionStorage.getItem("customerInfo")).lastName
     document.getElementById("rewards").innerHTML = sessionStorage.getItem("rewardsNum")
+}
+
+function getPhoneNum(){
+    var customerData = JSON.parse(sessionStorage.getItem("customerInfo"))
+    return customerData.phone
+}
+
+function getAddress(){
+    var customerData = JSON.parse(sessionStorage.getItem("customerInfo"))
+    return customerData.address.line1 + "<br>" + customerData.address.line2 + "<br>" +
+    customerData.address.city + "<br>" + customerData.address.state + "<br>" + customerData.address.zip
 }

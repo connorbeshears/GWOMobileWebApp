@@ -31,7 +31,11 @@
             <div class="well col-xs-10 col-sm-10 col-md-6 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
                 <div class="row">
                     <div class="text-center">
+                        <img src="../image/logo.jpeg" alt="Goodwill Logo"></img>
+                    </div>
+                    <div class="text-center">
                         <p>
+                            <hr>
                             Thank you for your donation
                             to Goodwill Industries, Inc.
                             a qualified 501 (c) (3)
@@ -43,8 +47,8 @@
                     <div class="text-center">
                         <p>
                             <hr>
-                            Goodwill Industries
-                            15455 Ruggles Street
+                            Goodwill Industries <br>
+                            15455 Ruggles Street <br>
                             Omaha, NE 68116
                         </p>
                     </div>
@@ -61,13 +65,10 @@
                 <div class="row">
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <address>
-                            <strong>Customer Name</strong>
+                            <strong id="name">Customer Name</strong>
                             <br>
-                            Address 1
-                            <br>
-                            Address 2
-                            <br>
-                            P: Phone #
+                            <div id="address">Address</div>
+                            <div id="phoneNum">Phone #</div>
                         </address>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
@@ -78,7 +79,7 @@
                             <em>Receipt #: #######</em>
                         </p>
                         <p>
-                            <em>Store: ##</em>
+                            <em id="storeNum">Store: ##</em>
                         </p>
                     </div>
                 </div>
@@ -136,7 +137,7 @@
                             deductions. For more
                             information on charitable
                             giving, log onto
-                            www.goodwillomah.org
+                            www.goodwillomaha.org
                             or www.irs.gov.
                             <br><br>
 
@@ -185,7 +186,12 @@
     }
 
     window.onload = function () {
+        // Author: Brianne
         printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)
+        document.getElementById("phoneNum").innerHTML = formatPhoneNum(getPhoneNum());
+        document.getElementById("address").innerHTML = getAddress();
         document.getElementById("date").innerHTML = getFormattedDate();
+        document.getElementById("name").innerHTML = JSON.parse(sessionStorage.getItem("customerInfo")).firstName + " " + JSON.parse(sessionStorage.getItem("customerInfo")).lastName
+        document.getElementById('storeNum').innerHTML = "Store: " + sessionStorage.getItem("storeNum");
     }
 </script>
