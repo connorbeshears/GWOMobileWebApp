@@ -71,7 +71,7 @@
                             <br>
                             Address 2
                             <br>
-                            P: Phone #
+                            Phone Number: <div id="phoneNum">Phone #</div>
                         </address>
                     </div>
                     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
@@ -140,7 +140,7 @@
                             deductions. For more
                             information on charitable
                             giving, log onto
-                            www.goodwillomah.org
+                            www.goodwillomaha.org
                             or www.irs.gov.
                             <br><br>
 
@@ -190,6 +190,8 @@
 
     window.onload = function () {
         printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)
+        console.log(formatPhoneNum(getPhoneNum()))
+        document.getElementById("phoneNum").innerHTML = formatPhoneNum(getPhoneNum());
         document.getElementById("date").innerHTML = getFormattedDate();
         document.getElementById("name").innerHTML = JSON.parse(sessionStorage.getItem("customerInfo")).firstName + " " + JSON.parse(sessionStorage.getItem("customerInfo")).lastName
         document.getElementById('storeNum').innerHTML = "Store: " + sessionStorage.getItem("storeNum");

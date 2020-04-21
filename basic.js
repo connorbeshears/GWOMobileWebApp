@@ -160,3 +160,8 @@ function generateItemSelect(){
     document.getElementById("name").innerHTML = JSON.parse(sessionStorage.getItem("customerInfo")).firstName + " " + JSON.parse(sessionStorage.getItem("customerInfo")).lastName
     document.getElementById("rewards").innerHTML = sessionStorage.getItem("rewardsNum")
 }
+
+function getPhoneNum(){
+    var customerData = JSON.parse(sessionStorage.getItem("customerInfo"))
+    return customerData.phone
+}
