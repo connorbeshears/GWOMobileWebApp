@@ -75,15 +75,11 @@ function phoneLookUp() {
     //This is our phone number look up call
     console.log("running phone look up")
     var xhr = new XMLHttpRequest();
+    var phone = document.getElementById("numLookUp").value
     var turl = url + "customer/by/phone/"+phone;
     xhr.open("GET", turl, true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    var phone = document.getElementById("numLookUp").value
-    var data = JSON.stringify({
-        "accessKey": JSON.parse(sessionStorage.getItem("accessKey")).accessKey,
-        "phone": phone
-    });
-
+    xhr.setRequestHeader("Authorization", "Bearer " + sessionStorage.getItem("accessKey"));
+  
     // This handles the response
     xhr.onreadystatechange = function () {
         if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -96,9 +92,10 @@ function phoneLookUp() {
                 document.getElementById("serviceError").hidden = true;
                 document.getElementById("warning").hidden = false;
             } else {
-                // return all customers under phone number
-                sessionStorage.setItem("customerInfo", response) // get this by sessionStorage.getItem("customerInfo")
-                window.location.href = "./pages/mainSelect.html"
+                //save customer(s) info to session storage from phone lookup
+                sessionStorage.setItem("customerInfo", response)
+                sessionStorage.setItem("rewardsNum", loyaltyNumber)
+                window.location.href = "customerList.html"
             }
         } else if (xhr.status == 500 || xhr.status == 404) {
             document.getElementById("serviceError").hidden = false;
@@ -117,10 +114,6 @@ function emailLookUp() {
     var turl = url + "customer/by/email/"+email;
     xhr.open("GET", turl, true);
     xhr.setRequestHeader("Content-type", "application/json");
-    var data = JSON.stringify({
-        "accessKey": JSON.parse(sessionStorage.getItem("accessKey")).accessKey,
-        "email": email
-    });
 
     // Response
     xhr.onreadystatechange = function () {
@@ -132,9 +125,10 @@ function emailLookUp() {
             if (tmp.error) {
                 console.log("Bad fetch")
             } else {
-                // Return customers under email
-                sessionStorage.setItem("customerInfo", response) // get this by sessionStorage.getItem("customerInfo")
-                window.location.href = "./pages/mainSelect.html"
+                //save customer(s) info to session storage from email lookup
+                sessionStorage.setItem("customerInfo", response)
+                sessionStorage.setItem("rewardsNum", loyaltyNumber)
+                window.location.href = "customerList.html"
             }
         } else if (xhr.status == 500 || xhr.status == 404) {
             document.getElementById("serviceError").hidden = false;
