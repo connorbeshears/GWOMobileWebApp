@@ -247,3 +247,12 @@ function formatPhoneNum(phoneNum) {
     }
     return null
   }
+
+
+
+  function cancelOrder() {
+    sessionStorage.removeItem("itemType");
+    sessionStorage.removeItem("items");
+    sessionStorage.removeItem("date");
+    sessionStorage.removeItem("description");
+}
