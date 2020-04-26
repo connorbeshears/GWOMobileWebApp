@@ -29,6 +29,8 @@
   background-color: #003399;
   color: white;
   margin: 1em;
+  padding: 10px 20px;
+  font-size: 24px;
 }
 
 .button:hover{
