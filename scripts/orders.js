@@ -255,9 +255,13 @@ function formatPhoneNum(phoneNum) {
 
 
 // cancelOrder clears all order-related information from session storage
-  function cancelOrder() {
+  function cancelOrder(doReturn) {
     sessionStorage.removeItem("itemType");
     sessionStorage.removeItem("items");
     sessionStorage.removeItem("date");
     sessionStorage.removeItem("description");
+    sessionStorage.removeItem("customerInfo");
+    if(doReturn){
+        window.location.href = "mainSelect.html"
+    }
 }

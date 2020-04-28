@@ -1,4 +1,5 @@
 /* Remove the navbar's default margin-bottom and rounded borders */ 
+/* Authors: Connor Beshears */
 .navbar {
     margin-bottom: 0;
     border-radius: 0;

@@ -63,7 +63,7 @@
                             <em>Date: MM/DD/YYYY</em>
                         </p>
                         <p>
-                            <em>Receipt #: #######</em>
+                            <em id="transactionNum">Receipt #: #######</em>
                         </p>
                         <p>
                             <em id="storeNum">Store: ##</em>
@@ -176,6 +176,8 @@
         window.print();
 
         document.body.innerHTML = originalContents;
+
+        window.location.href = "success.html";
     }
 
     window.onload = function () {
@@ -188,5 +190,6 @@
         document.getElementById("date").innerHTML = getFormattedDate();
         document.getElementById("name").innerHTML = JSON.parse(sessionStorage.getItem("customerInfo")).firstName + " " + JSON.parse(sessionStorage.getItem("customerInfo")).lastName
         document.getElementById('storeNum').innerHTML = "Store: " + sessionStorage.getItem("storeNum");
+        document.getElementById('transactionNum').innerHTML = "Receipt #: " + sessionStorage.getItem("transactionId");
     }
 </script>

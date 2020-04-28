@@ -27,17 +27,12 @@
 
     <div id="confirmList">
     </div>
-
-    <form action="success.html" method="get" id="form_success">
-    </form>
-    <button type="submit" form="form_success" class="btn btn-primary button" value="Submit">Continue Without A Receipt</button>
-
+    <button type="submit" form="form_success" class="btn btn-primary button" value="Submit" onclick="sendOrderData('success.html')">Continue Without A Receipt</button>
+    <button type="submit" class="btn btn-primary button " onclick="sendOrderData('receipt.html')">Get Receipt</button>
+    
     <form action="confirmPageCancel.html" method="get" id="form_cancel">
+        <button type="submit" form="form_cancel" class="btn btn-primary button" value="Submit" >Cancel</button>
     </form>
-    <form method="get" action="receipt.html">
-        <button type="submit" class="btn btn-primary button ">Get Receipt</button>
-    </form>
-    <button type="submit" form="form_cancel" class="btn btn-primary button" value="Submit">Cancel</button>
 
     <!-- <button class="submit_and_print">Submit and Print</button> -->
     <!-- <button class="cancel">Cancel</button> -->
