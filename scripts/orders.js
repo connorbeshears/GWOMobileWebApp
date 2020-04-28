@@ -13,14 +13,16 @@
 //             "description": string    <-- sessionStorage.getItem("description")
 //         }
 
+
 // functions for processing orders and displaying info
+// printByIndexes takes the orders list, indexes list, and itemtype string, prints info related to that itemtype
 function printByIndexes(orders, indexes, itemType) {
     for (var i = 0; i < indexes.length; i++) { // for each item in {type}list
         if (i === 0) { // print item type once per set of items
             document.getElementById('confirmList').innerHTML += '<h2>' + itemType + '</h2>';
         }
-
         var order = orders[indexes[i]] // find specific order
+        // determine unit type
         if (order.unit === "box") {
             unit = "Boxes";
         }
@@ -30,6 +32,7 @@ function printByIndexes(orders, indexes, itemType) {
         if (order.unit === "each") {
             unit = "Each";
         }
+        // print unit:quantity
         document.getElementById('confirmList').innerHTML += '<p>' + unit + ': ' + order.quantity + '</p>';
         if (i === (indexes.length - 1)) { // print description at end, if there is one
             if (JSON.stringify(order.description).length !== 2) {
@@ -42,10 +45,11 @@ function printByIndexes(orders, indexes, itemType) {
 }
 
 
-
+// printRow takes order list, indexes list, and itemtype string, and prints info in rows for the receipt summary
 function printRow(orders, indexes, itemType) {
     for (var i = 0; i < indexes.length; i++) { // for each item in {type}list
         var order = orders[indexes[i]] // find specific order
+        // determine unit
         if (order.unit === "box") {
             unit = "Boxes";
         }
@@ -55,7 +59,7 @@ function printRow(orders, indexes, itemType) {
         if (order.unit === "each") {
             unit = "Each";
         }
-
+        // print itemtype, unit, and quantity
         document.getElementById('table').innerHTML +=
             "<tr>" +
             "<td class=\"col-md-9\"><em>" + itemType + "</em></td>" +
@@ -66,7 +70,7 @@ function printRow(orders, indexes, itemType) {
 }
 
 
-
+// printInfo takes the order list, and 4 lists of indexes (one for each itemtype) and prints info for each itemtype
 function printInfo(orders, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes) {
     var itemType;
     // print info in order, categorized by itemType
@@ -81,7 +85,7 @@ function printInfo(orders, clothesIndexes, furnitureIndexes, waresIndexes, misce
 }
 
 
-
+// printInfoRow is the same as printInfo but prints rows for the receipt summary instead of confirmation page format
 function printInfoRow(orders, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes) {
     var itemType;
     // print info in order, categorized by itemType, printing by row
@@ -96,7 +100,7 @@ function printInfoRow(orders, clothesIndexes, furnitureIndexes, waresIndexes, mi
 }
 
 
-
+// printOrders takes the parsed order list and lists for each itemtype, separates orders by item type, then prints by itemtype
 function printOrders(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes) {
     for (var i = 0; i < JSON.parse(sessionStorage.getItem('items')).length; i++) {
         var order = JSON.parse(sessionStorage.getItem('items'))[i];
@@ -116,7 +120,7 @@ function printOrders(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes
 }
 
 
-
+// printRows is the same as printOrders except it gathers the info to print the receipt summary table
 function printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes){
     var total = 0;
     // for each order in the sessionStorage orderlist, categorize it for printing
@@ -140,7 +144,7 @@ function printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, 
 }
 
 
-
+// get today's date
 function findDate() {
     var today = new Date();
     var dd = today.getDate();
@@ -153,7 +157,7 @@ function findDate() {
 }
 
 
-
+// format date to match backend format
 function getFormattedDate() {
     var today = new Date();
     var dd = today.getDate();
@@ -164,7 +168,7 @@ function getFormattedDate() {
 }
 
 
-
+// subtract takes the itemType and updates the item count and UI to reflect the new count
 function subtract(id) {
     if (id === "box") {
         if (boxCount > 0) {
@@ -187,7 +191,7 @@ function subtract(id) {
 }
 
 
-
+// add takes the itemType and updates the item count and UI to reflect the new count
 function add(id) {
     if (id === "box") {
         boxCount += 1;
@@ -204,7 +208,7 @@ function add(id) {
 }
 
 
-
+// createOrder takes the unit and quantity of the donation, generates an order, and adds it to the item list in session storage
 function createOrder(unit, quantity) { // on submit, multiple times if multiple units increased
     var newOrder = new Object();
     newOrder.itemType = sessionStorage.getItem("itemType"); // from previous page
@@ -222,7 +226,7 @@ function createOrder(unit, quantity) { // on submit, multiple times if multiple 
 }
 
 
-
+// submitOrders creates orders for all itemtypes with counts > 0
 function submitOrders() {
     // find which orders to submit based on units
     if (boxCount > 0) {
@@ -239,6 +243,7 @@ function submitOrders() {
 
 
 // reference to clean phone num format: https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
+// formatPhoneNum takes phoneNum and formats it: 1 (555) 555-5555
 function formatPhoneNum(phoneNum) {
     var clean = ('' + phoneNum).replace(/\D/g, '')
     var match = clean.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/)
@@ -249,7 +254,7 @@ function formatPhoneNum(phoneNum) {
   }
 
 
-
+// cancelOrder clears all order-related information from session storage
   function cancelOrder() {
     sessionStorage.removeItem("itemType");
     sessionStorage.removeItem("items");

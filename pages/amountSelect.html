@@ -92,11 +92,12 @@
 </html>
 
 <script>
-
+    // determine what options to display based on item type
     var itemType = sessionStorage.getItem("itemType");
     if (itemType === "clothes") {
         document.getElementById("itemType").innerHTML = "Clothes";
     }
+    // furniture doesn't come in boxes in bags
     else if (itemType === "furniture") {
         document.getElementById("itemType").innerHTML = "Furniture";
         document.getElementById("boxDiv").innerHTML = "";
@@ -109,10 +110,12 @@
         document.getElementById("itemType").innerHTML = "Miscellaneous";
     }
 
+    // keep track of counts
     var boxCount = 0;
     var bagCount = 0;
     var eachCount = 0;
 
+    // update DOM
     if (itemType === "furniture")
         document.getElementById("each").innerHTML = "Each: " + eachCount;
     else {

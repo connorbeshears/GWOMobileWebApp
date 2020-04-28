@@ -160,6 +160,7 @@
 </html>
 
 <script>
+    // variables to help print information
     var clothesIndexes = [];
     var furnitureIndexes = [];
     var waresIndexes = [];
@@ -179,7 +180,9 @@
 
     window.onload = function () {
         // Author: Brianne
+        // print info on each donation order
         printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)
+        // fill out customer information
         document.getElementById("phoneNum").innerHTML = formatPhoneNum(getPhoneNum());
         document.getElementById("address").innerHTML = getAddress();
         document.getElementById("date").innerHTML = getFormattedDate();
