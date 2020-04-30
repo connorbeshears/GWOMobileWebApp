@@ -70,7 +70,7 @@ function lookupManualLoyalty() {
 }
 
 
-
+//Author: Joshua Schmitz
 function phoneLookUp() {
     //This is our phone number look up call
     console.log("running phone look up")
@@ -106,7 +106,7 @@ function phoneLookUp() {
 }
 
 
-
+//Author: Joshua Schmitz
 function emailLookUp() {
     // Email lookup call
     var xhr = new XMLHttpRequest();
@@ -138,7 +138,8 @@ function emailLookUp() {
 }
 
 
-
+//Author: Josh Schmitz
+// Clears out session storage after orders/logging 
 function sessionclear() {
     sessionStorage.clear()
     window.location.href = "../index.html"
