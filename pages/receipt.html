@@ -182,6 +182,7 @@
     }
 
     window.onload = function () {
+        console.log("Orders List: " + sessionStorage.getItem("items"));
         // Author: Brianne
         // print info on each donation order
         printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)

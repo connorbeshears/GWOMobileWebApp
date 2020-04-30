@@ -105,7 +105,7 @@ function printOrders(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes
     for (var i = 0; i < JSON.parse(sessionStorage.getItem('items')).length; i++) {
         var order = JSON.parse(sessionStorage.getItem('items'))[i];
         parsedItems.push(order); // add parsed order to list
-        if (order['itemType'] === 'clothes') { // categorize by itemType for printing
+        if (order['itemType'] === 'Clothing') { // categorize by itemType for printing
             clothesIndexes.push(i);
         } else if (order['itemType'] === 'furniture') {
             furnitureIndexes.push(i);
@@ -127,7 +127,7 @@ function printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, 
     for (var i = 0; i < JSON.parse(sessionStorage.getItem('items')).length; i++) {
         var order = JSON.parse(sessionStorage.getItem('items'))[i];
         parsedItems.push(order); // add parsed order to list
-        if (order['itemType'] === 'clothes') { // categorize by itemType for printing
+        if (order['itemType'] === 'Clothing') { // categorize by itemType for printing
             clothesIndexes.push(i);
         } else if (order['itemType'] === 'furniture') {
             furnitureIndexes.push(i);
