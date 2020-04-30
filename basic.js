@@ -149,7 +149,7 @@ function sessionclear() {
 // Generates the list for the customer display page
 function generateCustomerList(){
     var customerData = JSON.parse(sessionStorage.getItem("customerInfo"))
-    document.getElementById('custList').innerHTML += '<a href="./itemSelect.html" class="list-group-item list-group-item-action p-4 background" >' + customerData.firstName + " " + customerData.lastName + '</a>'
+    document.getElementById('custList').innerHTML += '<a href="./itemSelect.html" class="list-group-item list-group-item-action pText p-4 background" >' + customerData.firstName + " " + customerData.lastName + '</a>'
 }
 
 function generateItemSelect(){

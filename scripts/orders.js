@@ -36,7 +36,7 @@ function printByIndexes(orders, indexes, itemType) {
         document.getElementById('confirmList').innerHTML += '<p class="confirmText">' + unit + ': ' + order.quantity + '</p>';
         if (i === (indexes.length - 1)) { // print description at end, if there is one
             if (JSON.stringify(order.description).length !== 2) {
-                document.getElementById('confirmList').innerHTML += '<p class="confirmText"> Description: ' + order.description + '</p>';
+                document.getElementById('confirmList').innerHTML += '<p class="pText"> Description: ' + order.description + '</p>';
                 // concatenate for description variable
                 description = description + order.description + ". ";
             }
