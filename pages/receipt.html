@@ -182,7 +182,6 @@
     }
 
     window.onload = function () {
-        console.log("Orders List: " + sessionStorage.getItem("items"));
         // Author: Brianne
         // print info on each donation order
         printRows(parsedItems, clothesIndexes, furnitureIndexes, waresIndexes, miscellaneousIndexes)
@@ -191,7 +190,7 @@
         document.getElementById("address").innerHTML = getAddress();
         document.getElementById("date").innerHTML = getFormattedDate();
         document.getElementById("name").innerHTML = JSON.parse(sessionStorage.getItem("customerInfo")).firstName + " " + JSON.parse(sessionStorage.getItem("customerInfo")).lastName
-        document.getElementById('storeNum').innerHTML = "Store: " + sessionStorage.getItem("storeNum");
+        document.getElementById('storeNum').innerHTML = "Store: " + sessionStorage.getItem("storeId");
         document.getElementById('transactionNum').innerHTML = "Receipt #: " + sessionStorage.getItem("transactionId");
     }
 </script>
